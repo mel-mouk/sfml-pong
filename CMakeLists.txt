@@ -4,7 +4,9 @@ set(CMAKE_CXX_STANDARD 17)
 
 find_package(SFML 2.5.1 COMPONENTS graphics)
 
-set(SOURCES src/main.cpp)
+set(SOURCES src/main.cpp
+            src/pang.cpp
+)
 
 add_executable(PANG ${SOURCES})
 

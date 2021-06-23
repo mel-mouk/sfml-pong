@@ -1,6 +1,6 @@
 #include "main.h"
 
 int main() {
-    std::cout << "Welcome to Pang !" << std::endl;
+    Pang::start();
     return 0;
 }
