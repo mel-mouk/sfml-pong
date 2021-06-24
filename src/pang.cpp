@@ -56,3 +56,7 @@ void Pang::gameLoop() {
         _window.display();
     }
 }
+
+void Pang::setState(Pang::State s) {
+    _state = s;
+}
