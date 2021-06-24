@@ -6,6 +6,10 @@ find_package(SFML 2.5.1 COMPONENTS graphics)
 
 set(SOURCES src/main.cpp
             src/pang.cpp
+            src/states/game-state.cpp
+            src/states/splashscreen-state.cpp
+            src/states/menu-state.cpp
+            src/states/playing-state.cpp
 )
 
 add_executable(PANG ${SOURCES})
