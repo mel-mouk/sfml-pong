@@ -1,7 +1,9 @@
 #ifndef PANG_SPLASHSCREEN_STATE_H
 #define PANG_SPLASHSCREEN_STATE_H
 
+#include "../pang.h"
 #include "game-state.h"
+#include <iostream>
 
 class SplashscreenState : public GameState {
 public:
@@ -9,6 +11,10 @@ public:
     void handleInput(sf::Event *event) override;
     void update(float timeElapsed) override;
     void draw(sf::RenderWindow *window) override;
+
+private:
+    sf::Texture _texture;
+    sf::Sprite _sprite;
 };
 
 #endif //PANG_SPLASHSCREEN_STATE_H
