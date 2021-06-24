@@ -10,7 +10,6 @@ set(SOURCES src/main.cpp
             src/states/splashscreen-state.cpp
             src/states/menu-state.cpp
             src/states/playing-state.cpp
-            src/entities/paddle.cpp
 )
 
 add_executable(PANG ${SOURCES})
