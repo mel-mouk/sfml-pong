@@ -1,9 +1,12 @@
 #ifndef PANG_MENU_STATE_H
 #define PANG_MENU_STATE_H
 
+#include <iostream>
+
 #include "game-state.h"
 #include "../pang.h"
-#include <iostream>
+#include "../objects/gui/play-button.h"
+#include "../objects/gui/exit-button.h"
 
 class MenuState: public GameState {
 public:
@@ -11,12 +14,6 @@ public:
     void handleInput(sf::Event *event) override;
     void update(float timeElapsed) override;
     void draw(sf::RenderWindow *window) override;
-
-private:
-    sf::Texture _playTexture;
-    sf::Sprite _playSprite;
-    sf::Texture _exitTexture;
-    sf::Sprite _exitSprite;
 };
 
 #endif //PANG_MENU_STATE_H

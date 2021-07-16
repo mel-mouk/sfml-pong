@@ -10,6 +10,13 @@ set(SOURCES src/main.cpp
             src/states/splashscreen-state.cpp
             src/states/menu-state.cpp
             src/states/playing-state.cpp
+            src/objects/visible-object.cpp
+            src/objects/visible-object-manager.cpp
+            src/objects/gui/splashscreen.cpp
+            src/objects/gui/play-button.cpp
+            src/objects/gui/exit-button.cpp
+            src/objects/entities/field.cpp
+            src/objects/entities/paddle.cpp
 )
 
 add_executable(PANG ${SOURCES})
