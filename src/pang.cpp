@@ -54,6 +54,8 @@ void Pang::gameLoop() {
         currentState->draw(&_window);
 
         _window.display();
+
+        currentState->endLoopLogic();
     }
 }
 

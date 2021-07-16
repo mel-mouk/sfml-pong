@@ -11,6 +11,7 @@ public:
     virtual void handleInput(sf::Event *event) = 0;
     virtual void update(float timeElapsed) = 0;
     virtual void draw(sf::RenderWindow *window) = 0;
+    virtual void endLoopLogic() {};
 
 protected:
     VisibleObjectManager _visibleObjectManager;

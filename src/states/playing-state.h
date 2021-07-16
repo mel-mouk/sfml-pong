@@ -13,6 +13,7 @@ public:
     void handleInput(sf::Event *event) override;
     void update(float timeElapsed) override;
     void draw(sf::RenderWindow *window) override;
+    void endLoopLogic() override;
 };
 
 #endif //PANG_PLAYING_STATE_H
