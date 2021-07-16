@@ -17,6 +17,7 @@ set(SOURCES src/main.cpp
             src/objects/gui/exit-button.cpp
             src/objects/entities/field.cpp
             src/objects/entities/paddle.cpp
+            src/objects/entities/ball.cpp
 )
 
 add_executable(PANG ${SOURCES})

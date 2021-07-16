@@ -5,6 +5,7 @@
 #include "game-state.h"
 #include "../objects/entities/field.h"
 #include "../objects/entities/paddle.h"
+#include "../objects/entities/ball.h"
 
 class PlayingState: public GameState {
 public:
