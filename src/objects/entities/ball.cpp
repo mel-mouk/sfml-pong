@@ -21,14 +21,8 @@ void Ball::update(float timeElapsed) {
         velocityY *= -1;
     }
 
-    // Temporary handling bounce with the right wall
-    if (getRight() + velocityX >= _constraints.left + _constraints.width) {
-        _angle = (180 - _angle) % 360;
-        velocityX *= -1;
-    }
-
-    // Handle loss condition on the players side
-    if (getLeft() + velocityX <= _constraints.left) {
+    // Handle loss condition
+    if (getLeft() + velocityX <= _constraints.left || getRight() + velocityX >= _constraints.left + _constraints.width) {
         isOut = true;
     }
 
@@ -45,7 +39,12 @@ void Ball::collideWith(VisibleObject *target) {
     float maxDiff = target->getBoundingRect().height;
 
     float normalizedDiff = distDiff / maxDiff;
-    _angle = (int)(normalizedDiff * 90); // Between -45 and 45 degree
+
+    if (target->getPosition().x < Pang::SCREEN_WIDTH / 2) {
+        _angle = (int)(normalizedDiff * 90); // Between -45 and 45 degree
+    } else {
+        _angle = 180 - (int)(normalizedDiff * 90);
+    }
     _speed += 100;
     if (_speed > _maxSpeed) _speed = _maxSpeed;
 }

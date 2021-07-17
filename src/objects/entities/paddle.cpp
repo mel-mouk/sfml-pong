@@ -7,6 +7,8 @@ Paddle::Paddle(float constraintTop, float constraintBottom) : VisibleObject("../
 }
 
 void Paddle::handleInput(sf::Event *event) {
+    if (isAI) return;
+
     if (event->type == sf::Event::KeyPressed) {
         if (event->key.code == sf::Keyboard::Up) {
             _direction = DIRECTION_UP;
@@ -19,6 +21,8 @@ void Paddle::handleInput(sf::Event *event) {
 }
 
 void Paddle::update(float timeElapsed) {
+    runAI();
+
     float velocity = 0.0f;
 
     if (_direction == DIRECTION_UP) {
@@ -34,5 +38,19 @@ void Paddle::update(float timeElapsed) {
         setPosition(pos.x, _constraintTop);
     } else if (pos.y + getBoundingRect().height > _constraintBottom) {
         setPosition(pos.x, _constraintBottom - getBoundingRect().height);
+    }
+}
+
+void Paddle::runAI() {
+    if (!isAI) return;
+    Ball *ball = dynamic_cast<Ball*>(Pang::getState()->getObjectManager()->get("ball"));
+
+    float centerY = (getTop() + getBottom()) / 2;
+    if (ball->getBottom() > getBottom()) {
+        _direction = DIRECTION_DOWN;
+    } else if (ball->getTop() < getTop()) {
+        _direction = DIRECTION_UP;
+    } else {
+        _direction = DIRECTION_NONE;
     }
 }

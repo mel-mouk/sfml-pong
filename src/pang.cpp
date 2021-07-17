@@ -4,6 +4,7 @@ sf::RenderWindow Pang::_window;
 sf::Clock Pang::_clock;
 Pang::State Pang::_state = Uninitialized;
 std::map<Pang::State, GameState *> Pang::_stateInstances;
+GameState *Pang::_currentState;
 
 void Pang::start() {
     if (_state != Uninitialized) return;
@@ -38,27 +39,31 @@ void Pang::gameLoop() {
         _window.clear(sf::Color(255, 255, 255));
 
         // Because we don't want to change our state during a frame
-        GameState *currentState = _stateInstances[_state];
+        _currentState = _stateInstances[_state];
 
         // Handle input
         sf::Event event;
         while (_window.pollEvent(event)) {
             if (event.type == sf::Event::Closed) { _state = Exiting; }
-            currentState->handleInput(&event);
+            _currentState->handleInput(&event);
         }
 
         // Update our entities
-        currentState->update(timeElapsed);
+        _currentState->update(timeElapsed);
 
         // Draw our new entities
-        currentState->draw(&_window);
+        _currentState->draw(&_window);
 
         _window.display();
 
-        currentState->endLoopLogic();
+        _currentState->endLoopLogic();
     }
 }
 
 void Pang::setState(Pang::State s) {
     _state = s;
+}
+
+GameState *Pang::getState() {
+    return _currentState;
 }

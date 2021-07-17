@@ -16,9 +16,11 @@ public:
 
     enum State { Uninitialized, Splashscreen, Menu, Playing, Exiting };
     static void setState(State s);
+    static GameState *getState();
 
 private:
     static State _state;
+    static GameState *_currentState;
     static std::map<State, GameState*> _stateInstances;
     static sf::RenderWindow _window;
     static sf::Clock _clock;

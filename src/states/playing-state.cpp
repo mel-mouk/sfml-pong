@@ -9,6 +9,11 @@ void PlayingState::init() {
     player1->setPosition(150, 718);
     _visibleObjectManager.add("player1", player1);
 
+    Paddle *player2 = new Paddle(field->getTop() + 10, field->getBottom() - 10);
+    player2->setPosition(1878, 718);
+    player2->isAI = true;
+    _visibleObjectManager.add("player2", player2);
+
     sf::Rect<float> ballConstraint = sf::Rect(field->getLeft() + 10, field->getTop() + 10, field->getBoundingRect().width - 20, field->getBoundingRect().height - 20);
     Ball *ball = new Ball(ballConstraint);
     float centerX = field->getLeft() + field->getBoundingRect().width / 2;
