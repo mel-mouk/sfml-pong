@@ -18,6 +18,7 @@ private:
     int _angle;
     float _speed;
     float _maxSpeed = 1800.0f;
+    float _timeElapsed;
     sf::Rect<float> _constraints;
 };
 

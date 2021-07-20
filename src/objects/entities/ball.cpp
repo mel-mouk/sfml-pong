@@ -5,10 +5,14 @@ Ball::Ball(sf::Rect<float> constraints) : VisibleObject("../assets/ball.png") {
     _angle = rand() % 2 == 0 ? 0 : 180;
     _constraints = constraints;
     isOut = false;
+    _timeElapsed = 0;
 }
 
 void Ball::update(float timeElapsed) {
     if (isOut) return;
+
+    _timeElapsed += timeElapsed;
+    if (_timeElapsed < 1) return;
 
     float velocity = _speed * timeElapsed;
     float angleInRadian = _angle * M_PI / 180.0f;
