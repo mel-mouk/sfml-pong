@@ -15,11 +15,16 @@ public:
     void draw(sf::RenderWindow *window) override;
     void endLoopLogic() override;
 
+    void reset();
+
 private:
     int _scorePlayer1 = 0;
     int _scorePlayer2 = 0;
     sf::Font _scoreFont;
     sf::Text _scoreText;
+    
+    bool _isDone;
+    sf::Text _endGameText;
 };
 
 #endif //PANG_PLAYING_STATE_H
