@@ -21,6 +21,20 @@ void PlayingState::init() {
     sf::Rect<float> ballRect = ball->getBoundingRect();
     ball->setPosition(centerX - ballRect.width / 2, centerY - ballRect.height / 2);
     _visibleObjectManager.add("ball", ball);
+
+    // Score
+    if (!_scoreFont.loadFromFile("../assets/fonts/Roboto-Bold.ttf")) {
+        std::cout << "Error while loading Roboto font" << std::endl;
+    }
+    _scoreText.setFont(_scoreFont);
+    _scoreText.setCharacterSize(100);
+    _scoreText.setStyle(sf::Text::Bold);
+    _scoreText.setFillColor(sf::Color::Black);
+    _scoreText.setString("0 - 0");
+    
+    sf::Rect<float> bound = _scoreText.getGlobalBounds();
+
+    _scoreText.setPosition(Pang::SCREEN_WIDTH / 2 - bound.width / 2, 50);
 }
 
 void PlayingState::handleInput(sf::Event *event) {
@@ -33,12 +47,21 @@ void PlayingState::update(float timeElapsed) {
 
 void PlayingState::draw(sf::RenderWindow *window) {
     _visibleObjectManager.drawAll(window);
+    window->draw(_scoreText);
 }
 
 void PlayingState::endLoopLogic() {
     Ball *ball = dynamic_cast<Ball*>(_visibleObjectManager.get("ball"));
 
     if (ball->isOut) {
+        sf::Vector2<float> ballPosition = ball->getPosition();
+        if (ballPosition.x > Pang::SCREEN_WIDTH / 2) {
+            _scorePlayer1++;
+        } else {
+            _scorePlayer2++;
+        }
+        _scoreText.setString(std::to_string(_scorePlayer1) + " - " + std::to_string(_scorePlayer2));
+
         _visibleObjectManager.remove("ball");
 
         Field *field = dynamic_cast<Field*>(_visibleObjectManager.get("field"));
